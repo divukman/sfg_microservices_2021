@@ -32,4 +32,9 @@ public class BeerServiceImpl implements BeerService {
         return newBeer;
     }
 
+    @Override
+    public void updateBeer(UUID beerId, BeerDto beerDto) {
+        //@todo: implement
+    }
+
 }

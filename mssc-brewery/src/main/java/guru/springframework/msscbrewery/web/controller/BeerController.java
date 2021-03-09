@@ -9,9 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.net.URL;
 import java.util.UUID;
 
 @RestController
@@ -37,6 +35,12 @@ public class BeerController {
         httpHeaders.add(HttpHeaders.LOCATION, baseUrl + "/api/v1/beer/" + newBeer.getId());
 
         return new ResponseEntity<>(httpHeaders, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{beerId}")
+    public ResponseEntity<?> updateBeer(final @PathVariable("beerId") UUID beerId, @RequestBody @Valid final BeerDto beerDto) {
+        beerService.updateBeer(beerId, beerDto);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
