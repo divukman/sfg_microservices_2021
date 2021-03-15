@@ -19,6 +19,7 @@ import java.util.UUID;
 @Getter
 public class BreweryClientImpl implements BreweryClient {
     public static String BEER_PATH_V1 = "/api/v1/beer/";
+    public static String CUSTOMER_PATH_V1 = "/api/v1/customer/";
 
     private String apiHost;
 
@@ -46,21 +47,21 @@ public class BreweryClientImpl implements BreweryClient {
 
     @Override
     public CustomerDto getCustomerById(UUID uuid) {
-        return restTemplate.getForObject(apiHost + BEER_PATH_V1 + uuid.toString(), CustomerDto.class);
+        return restTemplate.getForObject(apiHost + CUSTOMER_PATH_V1 + uuid.toString(), CustomerDto.class);
     }
 
     @Override
     public URI createCustomer(CustomerDto customerDto) {
-        return restTemplate.postForLocation(apiHost + BEER_PATH_V1, customerDto);
+        return restTemplate.postForLocation(apiHost + CUSTOMER_PATH_V1, customerDto);
     }
 
     @Override
     public void deleteCustomer(UUID uuid) {
-        restTemplate.delete(apiHost + BEER_PATH_V1 + uuid);
+        restTemplate.delete(apiHost + CUSTOMER_PATH_V1 + uuid);
     }
 
     @Override
     public void updateCustomer(UUID uuid, CustomerDto customerDto) {
-        restTemplate.put(apiHost + BEER_PATH_V1 + uuid, customerDto);
+        restTemplate.put(apiHost + CUSTOMER_PATH_V1 + uuid, customerDto);
     }
 }
