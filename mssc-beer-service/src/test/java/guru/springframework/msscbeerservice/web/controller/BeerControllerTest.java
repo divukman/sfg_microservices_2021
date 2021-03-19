@@ -2,12 +2,14 @@ package guru.springframework.msscbeerservice.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import guru.springframework.msscbeerservice.web.model.BeerDto;
+import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -34,6 +36,9 @@ class BeerControllerTest {
     void saveNewBeer() throws Exception {
         BeerDto beerDto = BeerDto.builder()
                 .beerName("New beer")
+                .beerStyle(BeerStyleEnum.ALE)
+                .upc(1234l)
+                .price(BigDecimal.valueOf(11.22))
                 .build();
 
         String beerJson = objectMapper.writeValueAsString(beerDto);
@@ -49,6 +54,9 @@ class BeerControllerTest {
     void updateBeerById() throws Exception {
         BeerDto beerDto = BeerDto.builder()
                 .beerName("New beer")
+                .beerStyle(BeerStyleEnum.ALE)
+                .upc(1234l)
+                .price(BigDecimal.valueOf(11.22))
                 .build();
 
         String beerJson = objectMapper.writeValueAsString(beerDto);

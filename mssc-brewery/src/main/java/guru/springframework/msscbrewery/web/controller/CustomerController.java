@@ -7,9 +7,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -47,6 +52,19 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCustomer(final @PathVariable("customerId") UUID customerId, final @RequestBody CustomerDto customerDto) {
         customerService.updateCustomer(customerId, customerDto);
+    }
+
+    @ExceptionHandler({ ConstraintViolationException.class })
+    public ResponseEntity<Object> handleConstraintViolation(
+            ConstraintViolationException ex, WebRequest request) {
+        List<String> errors = new ArrayList<String>();
+        for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
+            errors.add(violation.getRootBeanClass().getName() + " " +
+                    violation.getPropertyPath() + ": " + violation.getMessage());
+        }
+
+        return new ResponseEntity<Object>(
+                errors, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
 }
