@@ -43,6 +43,7 @@ jobs:
                     echo $PWD
                     mvn dependency:go-offline 
                     echo Changing dir...
+                    cd ..
                     cd mssc-brewery-client/
                     echo $PWD
                     mvn dependency:go-offline 
