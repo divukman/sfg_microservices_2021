@@ -33,6 +33,19 @@ jobs:
                       - v1-dependencies-
 
             - run: mvn dependency:go-offline
+            
+            # Hack! to get other project dependencies
+            - run:
+                command: |
+                    echo Changing dir...
+                    cd ..
+                    cd mssc-brewery
+                    echo $PWD
+                    mvn dependency:go-offline 
+                    echo Changing dir...
+                    cd mssc-brewery-client/
+                    echo $PWD
+                    mvn dependency:go-offline 
 
             - save_cache:
                   paths:
