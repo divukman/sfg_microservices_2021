@@ -22,8 +22,8 @@ jobs:
             MAVEN_OPTS: -Xmx3200m
 
         steps:
-            - checkout
-                path: ~/mssc-beer-service
+            - checkout:
+                path: ~/sfg_microservices_2021/mssc-beer-service
 
             # Download and cache dependencies
             - restore_cache:
