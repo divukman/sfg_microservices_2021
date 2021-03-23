@@ -43,7 +43,7 @@ jobs:
             - run: mvn integration-test
             
             - run:
-            command: |
+                command: |
                 echo Changing dir...
                 cd ..
                 cd mssc-brewery
