@@ -32,7 +32,7 @@ jobs:
                       # fallback to using the latest cache if no exact match is found
                       - v1-dependencies-
 
-            #- run: mvn dependency:go-offline
+            - run: mvn dependency:go-offline
 
             - save_cache:
                   paths:
@@ -42,15 +42,12 @@ jobs:
             # run tests!
             - run: mvn integration-test
             
-            - run:
-                command: |
-                    echo Changing dir...
-                    cd ..
-                    cd mssc-brewery
-                    echo $PWD
-                    mvn integration-test
-                    echo Changing dir...
-                    cd ..
-                    cd mssc-brewery-client/
-                    echo $PWD
-                    mvn integration-test
+            #- run:
+             #   command: |
+              #      echo Changing dir...
+               #     cd ..
+                #    cd mssc-brewery
+                 #   echo $PWD
+                  #  mvn integration-test
+                   # echo Changing dir...
+                
