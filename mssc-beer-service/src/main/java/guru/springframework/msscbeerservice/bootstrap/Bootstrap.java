@@ -2,6 +2,7 @@ package guru.springframework.msscbeerservice.bootstrap;
 
 import guru.springframework.msscbeerservice.domain.Beer;
 import guru.springframework.msscbeerservice.rapositories.BeerRepository;
+import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -29,7 +30,7 @@ public class Bootstrap implements CommandLineRunner {
         beerRepository.save(
                 Beer.builder()
                         .beerName("Karlovacko")
-                        .beerStyle("LAGER")
+                        .beerStyle(BeerStyleEnum.ALE)
                         .minOnHand(10)
                         .quantityToBrew(299)
                         .price(BigDecimal.valueOf(11.5))
@@ -40,7 +41,7 @@ public class Bootstrap implements CommandLineRunner {
         beerRepository.save(
                 Beer.builder()
                         .beerName("Mango Bobs")
-                        .beerStyle("IPA")
+                        .beerStyle(BeerStyleEnum.GOSE)
                         .minOnHand(10)
                         .quantityToBrew(299)
                         .price(BigDecimal.valueOf(14.5))
@@ -51,7 +52,7 @@ public class Bootstrap implements CommandLineRunner {
         beerRepository.save(
                 Beer.builder()
                         .beerName("Galaxy Cat")
-                        .beerStyle("PALE_ALE")
+                        .beerStyle(BeerStyleEnum.GOSE)
                         .minOnHand(10)
                         .quantityToBrew(299)
                         .price(BigDecimal.valueOf(13.9))
