@@ -23,7 +23,7 @@ jobs:
 
         steps:
             - checkout:
-                path: ~/sfg_microservices_2021/mssc-beer-service
+                path: ~/sfg_microservices_2021
 
             # Download and cache dependencies
             - restore_cache:
