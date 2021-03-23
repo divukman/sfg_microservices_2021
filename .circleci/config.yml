@@ -28,41 +28,29 @@ jobs:
             # Download and cache dependencies
             - restore_cache:
                   keys:
+                      - v1-dependencies-{{ checksum "pom.xml" }}
+                      # fallback to using the latest cache if no exact match is found
                       - v1-dependencies-
 
-            - run:
-                command: |
-                    echo Changing dir to brewery...
-                    cd ..
-                    cd mssc-brewery
-                    echo $PWD
-                    mvn dependency:go-offline
-                    cd ..
-                    cd mssc-brewery-client/
-                    echo $PWD
-                    mvn dependency:go-offline
-                    cd mssc-beer-service/
-                    echo $PWD
-                    mvn dependency:go-offline
+            #- run: mvn dependency:go-offline
 
             - save_cache:
                   paths:
                       - ~/.m2
+                  key: v1-dependencies-{{ checksum "pom.xml" }}
 
             # run tests!
+            - run: mvn integration-test
+            
             - run:
-                command: |
-                    echo Changing dir to brewery...
-                    cd ..
-                    cd mssc-brewery
-                    echo $PWD
-                    mvn integration-test
-                    cd ..
-                    cd mssc-brewery-client/
-                    echo $PWD
-                    mvn integration-test
-                    cd mssc-beer-service/
-                    echo $PWD
-                    mvn integration-test
-
-          
+            command: |
+                echo Changing dir...
+                cd ..
+                cd mssc-brewery
+                echo $PWD
+                mvn integration-test
+                echo Changing dir...
+                cd ..
+                cd mssc-brewery-client/
+                echo $PWD
+                mvn integration-test
