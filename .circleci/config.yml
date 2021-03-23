@@ -5,8 +5,8 @@
 #
 version: 2
 jobs:
-    build:
-        docker-beerservice:
+    build-beer-service:
+        docker:
             # specify the version you desire here
             - image: circleci/openjdk:11-browsers-legacy
 
