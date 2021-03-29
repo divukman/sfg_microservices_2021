@@ -43,7 +43,7 @@ class BeerControllerTest {
         BeerDto beerDto = BeerDto.builder()
                 .beerName("New beer")
                 .beerStyle(BeerStyleEnum.ALE)
-                .upc(upc)
+                .upc(String.valueOf(upc))
                 .price(BigDecimal.valueOf(11.22))
                 .build();
 
@@ -74,7 +74,7 @@ class BeerControllerTest {
         BeerDto beerDto = BeerDto.builder()
                 .beerName("New beer")
                 .beerStyle(BeerStyleEnum.ALE)
-                .upc(upc)
+                .upc(String.valueOf(upc))
                 .price(BigDecimal.valueOf(11.22))
                 .build();
 
@@ -93,7 +93,7 @@ class BeerControllerTest {
         BeerDto beerDto = BeerDto.builder()
                 .beerName("New beer")
                 .beerStyle(BeerStyleEnum.ALE)
-                .upc(upc)
+                .upc(String.valueOf(upc))
                 .price(BigDecimal.valueOf(11.22))
                 .build();
 

@@ -15,6 +15,10 @@ import java.math.BigDecimal;
 @Slf4j
 public class Bootstrap implements CommandLineRunner {
 
+    public static final String BEER_1_UPC = "0631234200036";
+    public static final String BEER_2_UPC = "0631234300019";
+    public static final String BEER_3_UPC = "0083783375213";
+
     private final BeerRepository beerRepository;
 
     @Override
@@ -34,7 +38,7 @@ public class Bootstrap implements CommandLineRunner {
                         .minOnHand(10)
                         .quantityToBrew(299)
                         .price(BigDecimal.valueOf(11.5))
-                        .upc(22334000001L)
+                        .upc(BEER_1_UPC)
                         .build()
         );
 
@@ -45,7 +49,7 @@ public class Bootstrap implements CommandLineRunner {
                         .minOnHand(10)
                         .quantityToBrew(299)
                         .price(BigDecimal.valueOf(14.5))
-                        .upc(22334000002L)
+                        .upc(BEER_2_UPC)
                         .build()
         );
 
@@ -56,7 +60,7 @@ public class Bootstrap implements CommandLineRunner {
                         .minOnHand(10)
                         .quantityToBrew(299)
                         .price(BigDecimal.valueOf(13.9))
-                        .upc(22334000003L)
+                        .upc(BEER_3_UPC)
                         .build()
         );
 
