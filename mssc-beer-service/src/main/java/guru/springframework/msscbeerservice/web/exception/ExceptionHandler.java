@@ -2,12 +2,10 @@ package guru.springframework.msscbeerservice.web.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
@@ -38,6 +36,11 @@ public class ExceptionHandler {
             errors.add(fieldName + ": " +errorMessage);
         });
         return new ResponseEntity<List>(errors, HttpStatus.BAD_REQUEST);
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<?> handleBeerNotFoundException(final NotFoundException beerNotFoundException) {
+        return new ResponseEntity<List>(Arrays.asList(beerNotFoundException.getStackTrace()), HttpStatus.NOT_FOUND);
     }
 
 }
