@@ -10,7 +10,11 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-@Component
+/**
+ * @deprecated Moved to data.sql init script, this is due to ID being auto-generated GUID
+ */
+@Deprecated
+//@Component
 @RequiredArgsConstructor
 @Slf4j
 public class Bootstrap implements CommandLineRunner {
