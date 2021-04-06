@@ -24,7 +24,7 @@ public class BeerServiceImpl implements BeerService {
     final BeerMapper beerMapper;
 
     @Override
-    public BeerPageList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest) {
+    public BeerPageList listBeers(String beerName, BeerStyleEnum beerStyle, Boolean showQuantityOnHand, PageRequest pageRequest) {
         BeerPageList beerPageList = null;
         Page<Beer> beerPage = null;
 
@@ -40,7 +40,9 @@ public class BeerServiceImpl implements BeerService {
         }
 
         beerPageList = new BeerPageList(
-          beerPage.getContent().stream().map(beerMapper::beerToBeerDto).collect(Collectors.toList()),
+                showQuantityOnHand ?
+                        beerPage.getContent().stream().map(beerMapper::beerToBeerDto).collect(Collectors.toList()) :
+                        beerPage.getContent().stream().map(beerMapper::beerToBeerDtoNoQoh).collect(Collectors.toList()),
           PageRequest.of(beerPage.getPageable().getPageNumber(), beerPage.getPageable().getPageSize()),
           beerPage.getTotalElements()
         );
@@ -49,15 +51,15 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public BeerDto findById(UUID beerId) {
+    public BeerDto findById(UUID beerId, Boolean showQuantityOnHand) {
         final Beer beer = beerRepository.findById(beerId).orElseThrow(() -> new NotFoundException("Beer with ID: " + beerId + " not found."));
-        return beerMapper.beerToBeerDto(beer);
+        return showQuantityOnHand ? beerMapper.beerToBeerDto(beer) : beerMapper.beerToBeerDtoNoQoh(beer);
     }
 
     @Override
     public BeerDto saveNewBeer(BeerDto beerDto) {
         final Beer savedBeer = beerRepository.save(beerMapper.beerDtoToBeer(beerDto));
-        return beerMapper.beerToBeerDto(savedBeer);
+        return beerMapper.beerToBeerDtoNoQoh(savedBeer);
     }
 
     @Override

@@ -30,6 +30,12 @@ public class BeerMapperDecorator implements BeerMapper {
     }
 
     @Override
+    public BeerDto beerToBeerDtoNoQoh(Beer beer) {
+        return mapper.beerToBeerDtoNoQoh(beer);
+    }
+
+
+    @Override
     public Beer beerDtoToBeer(BeerDto beerDto) {
         return mapper.beerDtoToBeer(beerDto);
     }
