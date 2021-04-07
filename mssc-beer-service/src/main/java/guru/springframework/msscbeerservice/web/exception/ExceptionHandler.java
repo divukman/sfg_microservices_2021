@@ -40,7 +40,7 @@ public class ExceptionHandler {
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NotFoundException.class)
     public ResponseEntity<?> handleBeerNotFoundException(final NotFoundException beerNotFoundException) {
-        return new ResponseEntity<List>(Arrays.asList(beerNotFoundException.getStackTrace()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<String>(beerNotFoundException.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }
