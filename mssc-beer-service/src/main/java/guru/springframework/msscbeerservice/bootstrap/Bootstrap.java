@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-/**
- * @deprecated Moved to data.sql init script, this is due to ID being auto-generated GUID
- */
+
 @Profile("localmysql")
 @Component
 @RequiredArgsConstructor
