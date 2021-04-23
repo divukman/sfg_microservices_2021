@@ -3,3 +3,6 @@
 # Beer service
 
 Depends on BOM https://github.com/divukman/mssc-brewery-BOM
+
+# Docker
+MySQL and Artemis -> scripts in docker/
