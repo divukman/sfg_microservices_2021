@@ -31,6 +31,7 @@ jobs:
                       - v1-dependencies-{{ checksum "pom.xml" }}
                       # fallback to using the latest cache if no exact match is found
                       - v1-dependencies-
+            - run: mkdir ~/.m2
             - run: echo "<settings><servers><server><id>github</id><username>divukman</username><password>$CI_TOKEN</password></server></servers></settings>" > ~/.m2/settings.xml
             - run: mvn dependency:go-offline
             
